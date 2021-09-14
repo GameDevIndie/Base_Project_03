@@ -15,6 +15,7 @@ function Courses() {
               image={coursesItem.image}
               name={coursesItem.name}
               price={coursesItem.price}
+              link={coursesItem.link}
             />
           );
         })}

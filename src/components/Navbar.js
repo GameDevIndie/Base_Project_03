@@ -19,6 +19,14 @@ function Navbar() {
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
         <img src={Logo} alt='Udemy' />
       </div>
+      {/* <div className='rightSide'>
+        <Link to='/home'> Home </Link>
+        <Link to='/courses'> Courses </Link>
+        <Link to='/teach'> Teach </Link>
+        <Link to='/business'> Business </Link>
+        <Link to='/'> Login </Link>
+        <button onClick={toggleNavbar}></button>
+      </div> */}
       
       {ctx.isLoggedIn && (
         <a href='/'>Home</a>
