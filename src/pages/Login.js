@@ -20,14 +20,14 @@ const usernameReducer = (state, action) => {
     return { value: action.val, isValid: action.val === 'root' };
   }
   if (action.type === 'INPUT_BLUR') {
-    return { value: state.value, isValid: state.value === 'root'};
+    return { value: state.value, isValid: state.value === 'root' };
   }
   return { value: '', isValid: false };
 };
 
 const passwordReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
-    return { value: action.val, isValid: action.val === 'root'};
+    return { value: action.val, isValid: action.val === 'root' };
   }
   if (action.type === 'INPUT_BLUR') {
     return { value: state.value, isValid: state.value === 'root' };
@@ -35,7 +35,7 @@ const passwordReducer = (state, action) => {
   return { value: '', isValid: false };
 };
 
-const Login = () => {
+const Login = (props) => {
   //const [enteredUsername, setEnteredUsername] = useState('');
   //const [enteredPassword, setEnteredPassword] = useState('');
   const [formIsValid, setFormIsValid] = useState(false);
@@ -59,32 +59,24 @@ const Login = () => {
   // let history = useHistory();
 
   useEffect(() => {
-    //console.log('EFFECT RUNNING');
+    console.log('EFFECT RUNNING');
 
     return () => {
-      //console.log('EFFECT CLEANUP');
+      console.log('EFFECT CLEANUP');
     };
   }, []);
 
   const { isValid: usernameIsValid } = usernameState;
   const { isValid: passwordIsValid } = passwordState;
 
-  const validateUsernameHandler = () => {
-    dispatchUsername({ type: 'INPUT_BLUR' });
-  };
-
-  const validatePasswordHandler = () => {
-    dispatchPassword({ type: 'INPUT_BLUR' });
-  };
-
   useEffect(() => {
     const identifier = setTimeout(() => {
-      //console.log('Checking form validity!');
+      console.log('Checking form validity!');
       setFormIsValid(usernameIsValid && passwordIsValid);
     }, 500);
 
     return () => {
-      //console.log('CLEANUP');
+      console.log('CLEANUP');
       clearTimeout(identifier);
     };
   }, [usernameIsValid, passwordIsValid]);
@@ -97,6 +89,14 @@ const Login = () => {
     dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
   };
 
+  const validateUsernameHandler = () => {
+    dispatchUsername({ type: 'INPUT_BLUR' });
+  };
+
+  const validatePasswordHandler = () => {
+    dispatchPassword({ type: 'INPUT_BLUR' });
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     //console.log('Hi');
@@ -107,6 +107,7 @@ const Login = () => {
     // }
     if (formIsValid) {
       ctx.onLogIn(usernameState.value, passwordState.value);
+      console.log('valid');
     } else if (!usernameIsValid) {
       usernameInputRef.current.focus();
     } else {
@@ -118,24 +119,26 @@ const Login = () => {
     <Card>
       <form onSubmit={onSubmitHandler} className={classes.input}>
         <label className={classes.login}>Log In</label>
-        <label htmlFor='username' className={classes.label}>
+        {/* <label htmlFor='username' className={classes.label}>
           Username
-        </label>
+        </label> */}
         <Input
           ref={usernameInputRef}
           id='username'
+          label="Username"
           type='text'
           isValid={usernameIsValid}
           value={usernameState.value}
           onChange={onUsernameChangeHandler}
           onBlur={validateUsernameHandler}
         ></Input>
-        <label htmlFor='password' className={classes.label}>
+        {/* <label htmlFor='password' className={classes.label}>
           Password
-        </label>
+        </label> */}
         <Input
           ref={passwordInputRef}
           id='password'
+          label="Password"
           type='password'
           isValid={passwordIsValid}
           value={passwordState.value}

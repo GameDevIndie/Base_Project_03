@@ -19,21 +19,16 @@ function Navbar() {
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
         <img src={Logo} alt='Udemy' />
       </div>
-      {/* <div className='rightSide'>
-        <Link to='/home'> Home </Link>
-        <Link to='/courses'> Courses </Link>
-        <Link to='/teach'> Teach </Link>
-        <Link to='/business'> Business </Link>
-        <Link to='/'> Login </Link>
+      <div className='rightSide'>
+        <a href='/home'> Home </a>
+        <a href='/courses'> Courses </a>
+        <a href='/teach'> Teach </a>
+        <a href='/business'> Business </a>
+        <a href='/'> Login </a>
         <button onClick={toggleNavbar}></button>
-      </div> */}
-      
-      {ctx.isLoggedIn && (
-        <a href='/'>Home</a>
-      )}
-      {ctx.isLoggedIn && (
-        <button>Logout</button>
-      )}
+      </div>
+      {ctx.isLoggedIn && <a href='/'>Home</a>}
+      {ctx.isLoggedIn && <button onClick={ctx.onLogOut}>Logout</button>}
     </div>
   );
 }

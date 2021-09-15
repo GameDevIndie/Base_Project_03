@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import BannerImage from "../assets/main_udemy.jpg";
 import "../styles/Home.css";
 
